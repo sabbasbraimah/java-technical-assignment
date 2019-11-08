@@ -50,12 +50,6 @@ public class ReceiptImp implements Receipt {
     }
 
     @Override
-    public BigDecimal calculateTotalCokePrice(String name, BigDecimal itemPrice, int quantity) {
-        return null;
-    }
-
-
-    @Override
     public  BigDecimal calculateTotalOrangePrice(String name, BigDecimal itemPrice,  double weight) {
         // 0.200 kg @  £1.99/kg 0.40
         int num = 0;
@@ -70,9 +64,9 @@ public class ReceiptImp implements Receipt {
         return price.setScale(2,RoundingMode.DOWN);
 
     }
-/**
+
     @Override
-    public BigDecimal calculateCokePrice(String name, BigDecimal itemPrice,  int quantity) {
+    public BigDecimal calculateTotalCokePrice(String name, BigDecimal itemPrice,  int quantity) {
 
         int num = 0;
         BigDecimal price = new BigDecimal(BigInteger.valueOf(num), 2);
@@ -91,21 +85,18 @@ public class ReceiptImp implements Receipt {
             }
         }         return price.setScale(2,RoundingMode.UP);
     }
-    **/
+
     public static  void  main(String[] args ){
         Receipt receipt  = new  ReceiptImp();
 
        BigDecimal payPrice  = receipt.calculateTotalBeansPrice("Beans",new BigDecimal(0.50), new BigDecimal(0.33), 8 );
        System.out.println(payPrice.setScale(2,RoundingMode.DOWN));
 
-      BigDecimal payPrice2 =   receipt. calculateTotalOrangePrice("Orange", new BigDecimal(0.40),  0.200);
-      System.out.println(payPrice2.setScale(2,RoundingMode.DOWN));
+       BigDecimal payPrice2 =   receipt. calculateTotalOrangePrice("Orange", new BigDecimal(0.40),  0.200);
+       System.out.println(payPrice2.setScale(2,RoundingMode.DOWN));
 
-
-
-      //  BigDecimal payPrice3 = receipt.calculateCokePrice("Coke", new BigDecimal(0.70 ), 2) ;
-      //  System.out.println(payPrice3.setScale(2,RoundingMode.CEILING));
-
+        BigDecimal payPrice3 = receipt.calculateTotalCokePrice("Coke", new BigDecimal(0.70 ), 2) ;
+       System.out.println(payPrice3.setScale(2,RoundingMode.CEILING));
 
         }
 }
