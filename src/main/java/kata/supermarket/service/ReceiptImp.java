@@ -78,15 +78,15 @@ public class ReceiptImp implements Receipt {
                 price = coke.getPrice();
             }
             if (coke.getQuantity() % 2 == 0) {
-               // System.out.println(coke.getQuantity() + "   :" + coke.getPrice().multiply(BigDecimal.valueOf(2)));
-                price = coke.getPrice().multiply(BigDecimal.valueOf(2.00));
-                BigDecimal discount = price.multiply(BigDecimal.valueOf(28.6).divide(BigDecimal.valueOf(100)));
-                price = price.subtract(discount);
+                price = new BigDecimal(coke.getQuantity()/3);
             }
-        }         return price.setScale(2,RoundingMode.UP);
+        }
+        return price.setScale(2,RoundingMode.UP);
     }
 
     public static  void  main(String[] args ){
+
+
         Receipt receipt  = new  ReceiptImp();
 
        BigDecimal payPrice  = receipt.calculateTotalBeansPrice("Beans",new BigDecimal(0.50), new BigDecimal(0.33), 8 );
@@ -95,7 +95,7 @@ public class ReceiptImp implements Receipt {
        BigDecimal payPrice2 =   receipt. calculateTotalOrangePrice("Orange", new BigDecimal(0.40),  0.200);
        System.out.println(payPrice2.setScale(2,RoundingMode.DOWN));
 
-        BigDecimal payPrice3 = receipt.calculateTotalCokePrice("Coke", new BigDecimal(0.70 ), 2) ;
+        BigDecimal payPrice3 = receipt.calculateTotalCokePrice("Coke", new BigDecimal(0.70 ), 24) ;
        System.out.println(payPrice3.setScale(2,RoundingMode.CEILING));
 
         }

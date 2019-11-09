@@ -19,7 +19,7 @@ private Beans beans;
     beans = new Beans("Beans", new BigDecimal(0.50), 6);
  }
  @Test
- public void testNullObject() throws Exception {
+ public void testBeansObject() throws Exception {
  assertNotNull(beans);
  assertEquals(new BigDecimal(0.50),beans.getPrice());
  assertEquals(6, beans.getQuantity());

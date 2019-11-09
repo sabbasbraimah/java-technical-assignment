@@ -22,20 +22,29 @@ public class ReceiptTest {
     public void setUp() throws Exception {
         receipt = new ReceiptImp();
     }
-    /**
     @Test
-    public void testNullObject() throws Exception {
-        Receipt receipt  = new  ReceiptImp();
-
-        BigDecimal price  = receipt.calculatePrice("Beans",new BigDecimal(0.50), new BigDecimal(0.33), 24 );
+    public void testCalculateTotalBeansPrice() throws Exception {
+        BigDecimal price  = receipt.calculateTotalBeansPrice("Beans",new BigDecimal(0.50), new BigDecimal(0.33), 24 );
         System.out.println(price.setScale(2,RoundingMode.DOWN));
 
-
-        System.out.println(price + " is ");
         assertNotNull(price);
-       assertEquals(new BigDecimal(8.03).setScale(2,RoundingMode.UP), receipt.calculatePrice("Beans", new BigDecimal(0.50), new BigDecimal(0.33),24) );
-       // assertEquals(1, beans.getQuantity());
-       // assertEquals("Beans", beans.getName());
+        assertEquals(price.setScale(2,RoundingMode.UP), receipt.calculateTotalBeansPrice("Beans", new BigDecimal(0.50), new BigDecimal(0.33),24 ) ) ;
     }
-**/
+
+    @Test
+    public void testCalculateTotalCokePrice() throws Exception {
+        BigDecimal price  = receipt.calculateTotalCokePrice("Coke",new BigDecimal(0.70), 24 );
+        System.out.println(price.setScale(2,RoundingMode.DOWN));
+        assertNotNull(price);
+        assertEquals(price.setScale(2,RoundingMode.UP), receipt.calculateTotalCokePrice("Coke",new BigDecimal(0.70), 24 ));
+    }
+
+    @Test
+    public void testCalculateTotalOrangePrice() throws Exception {
+        BigDecimal price  = receipt.calculateTotalOrangePrice("Orange",new BigDecimal(0.40), 0.200 );
+        System.out.println(price.setScale(2,RoundingMode.DOWN) );
+        assertNotNull(price);
+        assertEquals( price.setScale(2,RoundingMode.UP), receipt.calculateTotalOrangePrice("Orange",new BigDecimal(0.40), 0.200));
+    }
+
 }
