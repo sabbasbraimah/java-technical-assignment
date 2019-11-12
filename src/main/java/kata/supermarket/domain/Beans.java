@@ -3,12 +3,17 @@ package kata.supermarket.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Beans extends Product {
 
+/**
+ Beans – A beans is a product item
+ that we sell to customers by a unit or a set of units
+
+ @author S.B.Abbas
+ */
+public class Beans extends Product {
 
     private int quantity;
     private BigDecimal price;
-
 
     public Beans() {
         super();

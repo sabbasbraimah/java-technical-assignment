@@ -2,6 +2,13 @@ package kata.supermarket.domain;
 
 import java.math.BigDecimal;
 
+
+/**
+ Product –  product is the abstract class
+ that specific products such as Beans, etc. inherit from
+ @author S.B.Abbas
+ */
+
 public abstract class Product implements Item{
 
     private String name;

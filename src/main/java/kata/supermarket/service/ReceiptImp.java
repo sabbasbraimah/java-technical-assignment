@@ -39,14 +39,14 @@ public class ReceiptImp implements Receipt {
         return price.setScale(2,RoundingMode.DOWN);
     }
 
-    private   BigDecimal getPriceOfUnitOIBeans(Beans beans){
+    public   BigDecimal getPriceOfUnitOIBeans(Beans beans){
         if (beans.getQuantity() == 1 ){
             price = beans.getPrice();
         }
         return price;
     }
 
-    private   BigDecimal getPriceOfTwoUnitsOIBeans(Beans beans){
+    private  BigDecimal getPriceOfTwoUnitsOIBeans(Beans beans){
         if (beans.getQuantity() == 2 ){
             price = beans.getPrice().multiply(BigDecimal.valueOf(2.00));        }
         return price;
@@ -63,7 +63,7 @@ public class ReceiptImp implements Receipt {
         return price;
     }
 
-    private   BigDecimal getPriceDivisibleByTreeAndRemainderTwo(Beans beans, BigDecimal discount){
+    private   BigDecimal getPriceDivisibleByThreeAndRemainderTwo(Beans beans, BigDecimal discount){
         if ( beans.getQuantity() > 3 &&    beans.getQuantity() % 3 == 2 ){
             int remainder = beans.getQuantity() % 3 ;
             int eligibleForDiscount = (beans.getQuantity() - remainder)  ;

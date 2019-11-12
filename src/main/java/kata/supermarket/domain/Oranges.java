@@ -3,6 +3,13 @@ package kata.supermarket.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+
+/**
+ Orange – An orange is a produce
+ that we sell to customers by weight
+ @author S.B.Abbas
+ */
+
 public class Oranges extends Product{
 
     private double weight;
