@@ -128,8 +128,8 @@ public class ReceiptImp implements Receipt {
        BigDecimal payPrice2 =   receipt. calculateTotalOrangePrice("Orange", new BigDecimal(0.40),  0.200);
        System.out.println(payPrice2.setScale(2,RoundingMode.DOWN));
 
-        BigDecimal payPrice3 = receipt.calculateTotalCokePrice("Coke", new BigDecimal(0.70 ), 24) ;
-       System.out.println(payPrice3.setScale(2,RoundingMode.CEILING));
+      //  BigDecimal payPrice3 = receipt.calculateTotalCokePrice("Coke", new BigDecimal(0.70 ), 24) ;
+     //  System.out.println(payPrice3.setScale(2,RoundingMode.CEILING));
 
         }
 }
