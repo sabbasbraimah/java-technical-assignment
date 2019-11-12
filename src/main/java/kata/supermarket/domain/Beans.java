@@ -5,14 +5,20 @@ import java.util.Objects;
 
 
 /**
- Beans – A beans is a product item
- that we sell to customers by a unit or a set of units
-
+ A <code>Beans</code>object represents a product item
+ that we sell to customers by a unit or a set of units.
+ A Beans has a name, quantity, and a value.
  @author S.B.Abbas
  */
 public class Beans extends Product {
 
+    /**
+     * The Beans quantity
+     */
     private int quantity;
+    /**
+     * The Beans unit price
+     */
     private BigDecimal price;
 
     public Beans() {

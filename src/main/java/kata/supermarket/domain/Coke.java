@@ -3,17 +3,23 @@ package kata.supermarket.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-
 /**
- Coke – A coke is a product item
- that we sell to customers by a unit pr a set of units
-
+ A <code>Coke</code>object represents a product item
+ that we sell to customers by a unit or a set of units.
+ A BCoke has a name, quantity, and a value.
  @author S.B.Abbas
  */
 
 public class Coke extends Product{
 
+    /**
+     * The Coke's quantity
+     */
     private int quantity;
+    /**
+     * The Coke's unit price
+     */
+    private BigDecimal price;
 
     public Coke() {
         super();
