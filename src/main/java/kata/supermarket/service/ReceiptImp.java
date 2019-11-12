@@ -8,45 +8,78 @@ import java.math.RoundingMode;
 
 public class ReceiptImp implements Receipt {
 
-   private int quantity = 3;
+   private int num = 0;
+   private  Beans beans;
+   private  BigDecimal price = new BigDecimal(BigInteger.valueOf(num), 2);
 
     @Override
     public void printReceipt() {
-
     }
+
     @Override
     public BigDecimal calculateTotalBeansPrice(String name, BigDecimal itemPrice, BigDecimal discount, int quantity) {
 
-        int num = 0;
-        BigDecimal price = new BigDecimal(BigInteger.valueOf(num), 2);
+        if (name == null || name.equalsIgnoreCase(" ") ) {
+            throw new RuntimeException("Name must be provided");
+        }
+        else if (itemPrice == null || itemPrice.compareTo(BigDecimal.valueOf(0.00)) == 0){
+                throw new RuntimeException("Price must be provided and must be more than 0.00");
+        }
+        else if ( quantity == 0){
+                   throw new RuntimeException("Quantity must be more than zero");
+        }
         if (name.equalsIgnoreCase("Beans")){
-            Beans beans = new Beans("Beans",itemPrice  , quantity);
-            if (beans.getQuantity() == 1 ){
-                price = beans.getPrice();
-            }
-            if (beans.getQuantity() == 2 ){
-                price = beans.getPrice().multiply(BigDecimal.valueOf(2.00));
-            }
-            if ( beans.getQuantity() > 3 &&    beans.getQuantity() % 3 == 1 ){
-                int remainder = beans.getQuantity() % 3 ;
-                int eligibleForDiscount = (beans.getQuantity() - remainder)  ;
-                discount =  beans.getPrice().multiply(BigDecimal.valueOf(eligibleForDiscount)).multiply(new BigDecimal(String.valueOf(discount)));
-                price = beans.getPrice().multiply(new BigDecimal(quantity)).subtract(discount);
-                price.add(new BigDecimal(0.50).multiply(new BigDecimal(remainder)));
-            }
-            if ( beans.getQuantity() > 3 &&    beans.getQuantity() % 3 == 2 ){
-                int remainder = beans.getQuantity() % 3 ;
-                int eligibleForDiscount = (beans.getQuantity() - remainder)  ;
-                discount =  beans.getPrice().multiply(BigDecimal.valueOf(eligibleForDiscount)).multiply(new BigDecimal(String.valueOf(discount)));
-                price = beans.getPrice().multiply(new BigDecimal(quantity)).subtract(discount);
-                price.add(new BigDecimal(0.50).multiply(new BigDecimal(remainder)));
-            }
-            if (beans.getQuantity() % 3 == 0){
-                discount =  beans.getPrice().multiply(BigDecimal.valueOf(quantity)).multiply(new BigDecimal(String.valueOf(discount)));
-                price = beans.getPrice().multiply(new BigDecimal(quantity)).subtract(discount);
-            }
+            beans = new Beans("Beans",itemPrice  , quantity);
+            price = getPriceOfUnitOIBeans(beans);
+            price =    getPriceOfTwoUnitsOIBeans(beans);
+            price = getPriceDivisibleByTreeAndRemainderOne(beans, discount);
+            price = getPriceDivisibleByTreeAndRemainderOne(beans, discount);
+            price = getPriceOfBeansDivisibleByThree(beans, discount);
         }
         return price.setScale(2,RoundingMode.DOWN);
+    }
+
+    private   BigDecimal getPriceOfUnitOIBeans(Beans beans){
+        if (beans.getQuantity() == 1 ){
+            price = beans.getPrice();
+        }
+        return price;
+    }
+
+    private   BigDecimal getPriceOfTwoUnitsOIBeans(Beans beans){
+        if (beans.getQuantity() == 2 ){
+            price = beans.getPrice().multiply(BigDecimal.valueOf(2.00));        }
+        return price;
+    }
+
+    private   BigDecimal getPriceDivisibleByTreeAndRemainderOne(Beans beans, BigDecimal discount){
+        if ( beans.getQuantity() > 3 &&    beans.getQuantity() % 3 == 1 ){
+            int remainder = beans.getQuantity() % 3 ;
+            int eligibleForDiscount = (beans.getQuantity() - remainder)  ;
+            discount =  beans.getPrice().multiply(BigDecimal.valueOf(eligibleForDiscount)).multiply(new BigDecimal(String.valueOf(discount)));
+            price = beans.getPrice().multiply(new BigDecimal(beans.getQuantity())).subtract(discount);
+            price.add(new BigDecimal(0.50).multiply(new BigDecimal(remainder)));
+        }
+        return price;
+    }
+
+    private   BigDecimal getPriceDivisibleByTreeAndRemainderTwo(Beans beans, BigDecimal discount){
+        if ( beans.getQuantity() > 3 &&    beans.getQuantity() % 3 == 2 ){
+            int remainder = beans.getQuantity() % 3 ;
+            int eligibleForDiscount = (beans.getQuantity() - remainder)  ;
+            discount =  beans.getPrice().multiply(BigDecimal.valueOf(eligibleForDiscount)).multiply(new BigDecimal(String.valueOf(discount)));
+            price = beans.getPrice().multiply(new BigDecimal(beans.getQuantity())).subtract(discount);
+            price.add(new BigDecimal(0.50).multiply(new BigDecimal(remainder)));
+        }
+        return price;
+    }
+
+    private   BigDecimal getPriceOfBeansDivisibleByThree(Beans beans, BigDecimal discount){
+        if (beans.getQuantity() % 3 == 0){
+            discount =  beans.getPrice().multiply(BigDecimal.valueOf(beans.getQuantity())).multiply(new BigDecimal(String.valueOf(discount)));
+            price = beans.getPrice().multiply(new BigDecimal(beans.getQuantity())).subtract(discount);
+        }
+        return price;
     }
 
     @Override

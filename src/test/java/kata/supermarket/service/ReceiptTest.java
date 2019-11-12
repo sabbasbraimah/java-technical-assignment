@@ -31,6 +31,12 @@ public class ReceiptTest {
         assertEquals(price.setScale(2,RoundingMode.UP), receipt.calculateTotalBeansPrice("Beans", new BigDecimal(0.50), new BigDecimal(0.33),24 ) ) ;
     }
 
+
+
+
+
+
+
     @Test
     public void testCalculateTotalCokePrice() throws Exception {
         BigDecimal price  = receipt.calculateTotalCokePrice("Coke",new BigDecimal(0.70), 24 );
