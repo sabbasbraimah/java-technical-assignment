@@ -1,8 +1,17 @@
 package kata.supermarket.service;
 
 import kata.supermarket.domain.Beans;
-import kata.supermarket.domain.Item;
-import kata.supermarket.domain.Product;
+/**
+ * Receipt interface that prints the
+ * total price.
+ * It also serves the purpose being
+ * the tool that makes it possible to
+ * extend the print total price functionality
+ * whenever a new different pricing system
+ * is needed. You only need to implement a
+ * new Receipt implementation for the needed feature.
+ * @author S.B Abbas
+ */
 
 import java.math.BigDecimal;
 
