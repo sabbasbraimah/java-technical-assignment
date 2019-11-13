@@ -53,3 +53,28 @@ Use the following example of a receipt to know what data needs to be available. 
     Total savings       -0.90
     -------------------------
     Total to Pay         2.40
+********************************************************************************
+************************************************************IIII
+
+Since the pricing system has a tendency to change
+I applied the Extensible nut not modified principle
+so that whenever there is a need for a new price system,
+all we do is add a new PriceCalculation sub class.
+
+With many implementations of the TotalPriceCalculator,
+an external configuration can be used to determine which
+one to use in any particular case. Or a tool such as JEE's 
+@Priority, @Primary annotations can help specify a particular 
+implementation to use.
+
+I could have used ogging but I wanted to limit mysekf to the 
+library set you provided me for the test.
+
+The exception handling could have terminate gracefully.
+
+Method sizes and parameter list could be reduced by breaking
+down methods into two or more coordinating methods.
+
+I was not sure if the printing of the total price
+is also a required functionality.
+
